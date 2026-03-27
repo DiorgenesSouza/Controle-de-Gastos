@@ -1,6 +1,6 @@
 package com.financas.controle_gastos.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.financas.controle_gastos.enums.Classificacao;
 import com.financas.controle_gastos.enums.TipoTransacao;
 import jakarta.persistence.*;
@@ -36,4 +36,10 @@ public class Transacao {
     private Classificacao classificacao;
 
     private String categoria;
+
+    // Relacionamento para o Painel de Controle Financeiro Personalizado
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnore // Evita erro de recursão infinita no JSON
+    private Usuario usuario;
 }

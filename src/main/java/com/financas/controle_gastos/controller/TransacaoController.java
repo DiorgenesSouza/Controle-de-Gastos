@@ -3,6 +3,7 @@ package com.financas.controle_gastos.controller;
 import com.financas.controle_gastos.model.Transacao;
 import com.financas.controle_gastos.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -28,11 +29,17 @@ public class TransacaoController {
 
     @PostMapping
     public Transacao salvar(@RequestBody Transacao transacao) {
+        System.out.println(transacao);
         return service.salvar(transacao);
     }
 
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id) {
         service.excluir(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Transacao> atualizar(@PathVariable Long id, @RequestBody Transacao transacao) {
+        return ResponseEntity.ok(service.editar(id, transacao));
     }
 }
