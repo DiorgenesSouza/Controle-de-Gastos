@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transacoes")
-@CrossOrigin(origins = "http://localhost:4200") // Para o seu futuro Frontend Angular conectar sem problemas
+@CrossOrigin(origins = "http://localhost:4200")
 public class TransacaoController {
 
     @Autowired
-    private TransacaoService service; // Agora usamos a Service!
+    private TransacaoService service;
 
     @GetMapping
     public List<Transacao> listar() {
